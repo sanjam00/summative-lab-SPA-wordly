@@ -1,54 +1,82 @@
 let dictionary = []
 
 //fetch api
-function fetchDictionary(query){
+function fetchDictionary(query) {
 
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${query}`)
-    .then ((response) => response.json())
-    .then (data => {
-        console.log(data)
-        console.log("test")
-        displayWord(data)
-    })
-    .catch(error => {
-        console.error(error)
-    })
+        .then((response) => response.json())
+        .then(data => {
+            console.log(data)
+            // console.log("test")
+            displayWord(data)
+        })
+        .catch(error => {
+            console.error(error)
+        })
 }
 
-function displayWord(data){
+function displayWord(data) {
     //should display the info for the fetched word
 
     const displayContainer = document.getElementById("display-results")
-    
+
+    const phoneticsText = data[0].phonetics
+        .map(p => p.text)
+        .filter(Boolean)
+        .join(", ")
+
+    //create element of the searched word, display all phonetics with it
+    const itemName = document.createElement("ul")
+    itemName.textContent = `${data[0].word} ${phoneticsText}`
+
+    data.forEach(entry => {
+
+        entry.meanings.forEach((meaning, i) => { //data.word.forEach or data.forEach?
+            //gets all phonetics, displays them all at once, not with each version of the word
+
+            const partOfSpeach = document.createElement("li")
+            partOfSpeach.textContent = `Part of Speech ${i + 1}: ${meaning.partOfSpeech}`
+            itemName.append(partOfSpeach);
+
+            meaning.definitions.forEach((def, j) => {
+                //gets the definition and displays it. 
+                const definition = document.createElement("li")
+                definition.textContent = `Definition ${j + 1}: ${def.definition}`
+
+                if (def.synonyms !== undefined) {
+                    const synonyms = document.createElement("li")
+                    synonyms.id = "synonyms"
+                    synonyms.textContent = def.synonyms
+                    itemName.append(synonyms)
+                    // console.log(def.synonyms)
+                } else {
+                    const synonyms = document.createElement("li")
+                    synonyms.id = "no-synonym"
+                    synonyms.textContent = "No available synonyms"
+                    itemName.append(synonyms)
+
+                }
+                console.log(def.synonyms)
+                itemName.append(definition)
+            })
+
+
+            displayContainer.append(itemName);
+
+        })
+    })
 
     //needs to make a separate definition card for each definition.
     //EX "record" has one card for a verb and one for a noun
-    data[0].meanings.forEach((content) =>{ //data.word.forEach or data.forEach?
-        const itemName = document.createElement("ul")
-        itemName.textContent = `${data[0].word} ${data[0].phonetic}` 
 
-        const origin1 = document.createElement("li")
-        origin1.textContent = content.origin
 
-        // const meanings = document.createElement("ul")
-        const partOfSpeach = document.createElement("li")
-        partOfSpeach.textContent = content.partOfSpeech
 
-        const definition = document.createElement("li")
-        definition.textContent = content.definitions[0].definition
 
-        itemName.append(origin1, partOfSpeach, definition);
-        displayContainer.append(itemName);
-
-    })
-
-    
-    
 }
 
 const form = document.querySelector("#form");
 
-function handleSubmit(event){
+function handleSubmit(event) {
     //should get the info for the fetched word and push to an array of objects?
 
     event.preventDefault();
@@ -60,7 +88,7 @@ function handleSubmit(event){
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  
-  form.addEventListener('submit', handleSubmit)
+
+    form.addEventListener('submit', handleSubmit)
 
 });
