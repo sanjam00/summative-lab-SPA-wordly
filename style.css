@@ -9,24 +9,25 @@ header {
 
 h1 {
     font-family: "Times New Roman", Times, serif;
-    font-weight: 400;
+    font-weight: bold;
     color: #F5EBD0;
-    /* change font family*/
+    /* change font style*/
 }
 
 #form {
-    /* add margin like a nav-bar;  */
     background-color: #304485;
     width: 100%;
     padding: 10px;
     margin: 0;
     justify-content: center;
+    align-items: center;
     /*add padding/border; make it touch the bottom of the header color bar; alignment center*/
 }
 
 #user-input{
     border-radius: 10px;
-    size: 25px; /*maybe use width and height intead?*/;
+    width: 50px; /*maybe use width and height intead?*/;
+    height: 10px;
 }
 
 #enter{
@@ -37,6 +38,7 @@ h1 {
 body{
     background-color: #EBEBEB;
 }
+
 
 
 
