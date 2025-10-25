@@ -23,15 +23,16 @@ h1 {
     width: 100%;
     padding: 10px;
     margin: 0;
-    justify-content: center;
-    align-items: center;
+    display: flex;
+    /* justify-content: center;
+    align-items: center; */
     /*add padding/border; make it touch the bottom of the header color bar; alignment center*/
 }
 
 #user-input{
     border-radius: 10px;
     width: 100px; /*maybe use width and height intead?*/;
-    height: 10px;
+    height: 50px;
 }
 
 #enter{
@@ -48,8 +49,9 @@ body{
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
     border-radius: 15px;
     background-color: #F7F7F7;
-    padding: 50px;
+    padding: 25px;
     margin: 50px;
     /*add hover*/
 }
+
 
