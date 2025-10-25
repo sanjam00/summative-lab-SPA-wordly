@@ -40,13 +40,14 @@ function displayWord(data) {
     })
     displayContainer.append(favoritesBtn)
 
+
     data.forEach(entry => {
 
         entry.phonetics.forEach(phon => {
             //display phonetic text
             if (phon.text) {
                 const phoneticText = document.createElement("p")
-                phoneticText.textContent = phon.text
+                phoneticText.textContent = phon.text //.join(", ")
                 displayContainer.append(phoneticText)
             }
 
