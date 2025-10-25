@@ -16,16 +16,17 @@ h1 {
     background-color: #304485;
 }
 
-#user-input, #enter{
+#user-input{
     border-radius: 10px;
-    size: /*maybe use width and height intead?*/;
+    size: 25px; /*maybe use width and height intead?*/;
 }
 
 #enter{
     border-radius: 10px;
-    size: /*maybe use width and height intead?*/;
+    size: 25px; /*maybe use width and height intead?*/;
 }
 
 body{
     background-color: #D1D1D1;
 }
+
