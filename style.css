@@ -1,0 +1,31 @@
+/* add header div element to html file for h1 and the p... add id for p element*/
+header {
+    background-color: #4260A6;
+    text-align: center;
+}
+
+h1 {
+    font-family: "Times New Roman", Times, serif;
+    font-weight: 200;
+    color: antiquewhite;
+    /* bold; white/cream to contrast the background*/
+}
+
+#form {
+    /* add margin like a nav-bar;  */
+    background-color: #304485;
+}
+
+#user-input, #enter{
+    border-radius: 10px;
+    size: /*maybe use width and height intead?*/;
+}
+
+#enter{
+    border-radius: 10px;
+    size: /*maybe use width and height intead?*/;
+}
+
+body{
+    background-color: #D1D1D1;
+}
