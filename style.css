@@ -6,14 +6,15 @@ header {
 
 h1 {
     font-family: "Times New Roman", Times, serif;
-    font-weight: 200;
-    color: antiquewhite;
-    /* bold; white/cream to contrast the background*/
+    font-weight: 400;
+    color: #F5EBD0;
+    /* change font family*/
 }
 
 #form {
     /* add margin like a nav-bar;  */
     background-color: #304485;
+    /*add padding/border; make it touch the bottom of the header color bar; alignment center*/
 }
 
 #user-input{
@@ -29,5 +30,6 @@ h1 {
 body{
     background-color: #D1D1D1;
 }
+
 
 
