@@ -2,6 +2,7 @@
 header {
     background-color: #A9B6E0;
     text-align: center;
+    border: 100%
 }
 
 h1 {
@@ -14,6 +15,9 @@ h1 {
 #form {
     /* add margin like a nav-bar;  */
     background-color: #304485;
+    border: 100%;
+    padding: 10px;
+    alignment: center;
     /*add padding/border; make it touch the bottom of the header color bar; alignment center*/
 }
 
@@ -28,8 +32,9 @@ h1 {
 }
 
 body{
-    background-color: #D1D1D1;
+    background-color: #EBEBEB;
 }
+
 
 
 
