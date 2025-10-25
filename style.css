@@ -1,8 +1,10 @@
-/* add header div element to html file for h1 and the p... add id for p element*/
+/* add header div element to html file for h1 and the p; add id for p element*/
 header {
     background-color: #A9B6E0;
     text-align: center;
-    border: 100%
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
@@ -15,9 +17,10 @@ h1 {
 #form {
     /* add margin like a nav-bar;  */
     background-color: #304485;
-    border: 100%;
+    width: 100%;
     padding: 10px;
-    alignment: center;
+    margin: 0;
+    justify-content: center;
     /*add padding/border; make it touch the bottom of the header color bar; alignment center*/
 }
 
@@ -34,6 +37,7 @@ h1 {
 body{
     background-color: #EBEBEB;
 }
+
 
 
 
