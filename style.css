@@ -1,6 +1,6 @@
 /* add header div element to html file for h1 and the p... add id for p element*/
 header {
-    background-color: #4260A6;
+    background-color: #A9B6E0;
     text-align: center;
 }
 
@@ -29,4 +29,5 @@ h1 {
 body{
     background-color: #D1D1D1;
 }
+
 
