@@ -60,12 +60,11 @@ h1 {
     height: 22px;
     padding: 2px;
     transform: translateY(-1px);
-    /* text-transform: font-style italic .3s; */
 }
 
 body {
     background-color: #E0E0E0;
-    margin: 0;
+    margin: -1px;
     padding: 0;
 }
 
@@ -98,15 +97,14 @@ button#favoritesBtn {
     border-radius: 10px;
     border: none;
     background-color: #EAD69E;
-    transition: .3s;
+    transition: .3s ease-out;
     font-family: 'Trebuchet MS', sans-serif;
 }
 
 .favorited {
     background-color: #A9B6E0;
     border-radius: 10px;
-    /* padding: 0.2em 0.4em; */
-    transition: background-color 0.3s ease;
+    transition: 0.3s ease-out;
 }
 
 #phonTextContainer {
@@ -148,7 +146,6 @@ p {
     line-height: 1.75;
     letter-spacing: .03em;
     font-family: 'Trebuchet MS', sans-serif;
-    /* font-weight: lighter; */
 }
 
 ol li::marker {
@@ -160,8 +157,8 @@ ol li::marker {
     font-style: italic;
 }
 
-/* # Chunk 5: Mobile responsiveness */
-/* @media (max-width: 480px) {
+/* Mobile responsiveness */
+@media (max-width: 480px) {
     #form {
         flex-wrap: wrap;
         padding: 12px;
@@ -181,4 +178,4 @@ ol li::marker {
         padding: 12px 16px;
         margin: 0.25rem 0;
     }
-} */
+}

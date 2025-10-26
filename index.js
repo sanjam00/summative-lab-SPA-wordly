@@ -1,5 +1,3 @@
-let favorites = []
-
 //fetch api
 function fetchDictionary(query) {
 
@@ -23,7 +21,6 @@ function fetchDictionary(query) {
 //declared globally so it can be cleared upon new search
 const displayContainer = document.getElementById("display-results")
 
-//!!favorites button not functional
 function displayWord(data) {
     //displays the info for the fetched word
 
@@ -43,110 +40,96 @@ function displayWord(data) {
     })
     displayContainer.append(favoritesBtn)
 
-data.forEach(entry => {
+    data.forEach(entry => {
 
-    const phonTextContainer = document.createElement("div")
-    phonTextContainer.id = "phonTextContainer"
+        //create containers for the phonetic text and phonetic audio
+        const phonTextContainer = document.createElement("div")
+        phonTextContainer.id = "phonTextContainer"
 
-    const phonAudioContainer = document.createElement("div")
-    phonAudioContainer.id = "phonAudioContainer"
+        const phonAudioContainer = document.createElement("div")
+        phonAudioContainer.id = "phonAudioContainer"
+        
+        entry.phonetics.forEach(phon => {
+            //display phonetic text
 
-    entry.phonetics.forEach(phon => {
-        //display phonetic text
-        if (phon.text) {
-            const phoneticText = document.createElement("span")
-            phoneticText.classList.add("phoneticText")
-            phoneticText.innerHTML = phon.text
-            // displayContainer.append(phoneticText)
-            phonTextContainer.append(phoneticText)
-        }
+            if (phon.text) {
+                const phoneticText = document.createElement("span")
+                phoneticText.classList.add("phoneticText")
+                phoneticText.innerHTML = phon.text
+                phonTextContainer.append(phoneticText)
+            }
 
-        //display a button for phonetic audio
-        if (phon.audio) {
-            const phoneticAudioBtn = document.createElement("button")
-            phoneticAudioBtn.classList.add("phoneticAudioBtn")
-            phoneticAudioBtn.textContent = "play audio"
-            phoneticAudioBtn.addEventListener("click", () => {
-                new Audio(phon.audio).play()
+            //display a button for phonetic audio
+            if (phon.audio) {
+                const phoneticAudioBtn = document.createElement("button")
+                phoneticAudioBtn.classList.add("phoneticAudioBtn")
+                phoneticAudioBtn.textContent = "play audio"
+                phoneticAudioBtn.addEventListener("click", () => {
+                    new Audio(phon.audio).play()
+                })
+                phonAudioContainer.append(phoneticAudioBtn)
+            }
+        })
+        displayContainer.append(phonTextContainer, phonAudioContainer)
+
+        entry.meanings.forEach((meaning) => {
+
+            //container for each definition card
+            const meaningBlock = document.createElement("div")
+            meaningBlock.id = "meaning-block"
+
+            //part of speech as a header element
+            const partOfSpeach = document.createElement("h3")
+            partOfSpeach.textContent = meaning.partOfSpeech
+            meaningBlock.append(partOfSpeach);
+
+            //definition list
+            const defList = document.createElement("ol")
+            meaning.definitions.forEach((def) => {
+
+                //gets the definition and displays it. 
+                const definition = document.createElement("li")
+                definition.innerHTML = def.definition
+
+                //handles display of examples
+                if (def.example) {
+                    const defExample = document.createElement("p")
+                    defExample.id = "example"
+                    defExample.textContent = `Example: ${def.example}`
+                    definition.append(defExample)
+                }
+
+                //handles display of synonyms
+                if (def.synonyms && def.synonyms.length > 0) {
+                    const synonyms = document.createElement("p")
+                    synonyms.id = "synonyms"
+                    synonyms.textContent = `Synonyms: ${def.synonyms.join(", ")}`
+                    definition.append(synonyms)
+                    // console.log(def.synonyms)
+                }
+                
+                defList.append(definition)
+
             })
-            // displayContainer.append(phoneticAudioBtn)
-            phonAudioContainer.append(phoneticAudioBtn)
-        }
-    })
+            meaningBlock.append(defList)
 
-    displayContainer.append(phonTextContainer, phonAudioContainer)
-
-    entry.meanings.forEach((meaning) => { //data.word.forEach or data.forEach?
-        //gets all phonetics, displays them all at once, not with each version of the word
-
-        //container for each definition card
-        const meaningBlock = document.createElement("div")
-        meaningBlock.id = "meaning-block"
-
-        //part of speech as a title element
-        const partOfSpeach = document.createElement("h3")
-        partOfSpeach.textContent = meaning.partOfSpeech
-        meaningBlock.append(partOfSpeach);
-
-        //definition list
-        const defList = document.createElement("ol")
-        meaning.definitions.forEach((def) => {
-
-            //gets the definition and displays it. 
-            const definition = document.createElement("li")
-            definition.innerHTML = def.definition
-
-            //handles display of examples
-            if (def.example) {
-                const defExample = document.createElement("p")
-                defExample.id = "example"
-                defExample.textContent = `Example: ${def.example}`
-                definition.append(defExample)
-            }
-            // else {
-            //     const defExample = document.createElement("p")
-            //     defExample.id = "no-example"
-            //     defExample.textContent = "Example: No available example"
-            //     definition.append(defExample)
-            // }
-
-            //handles display of synonyms
-            if (def.synonyms && def.synonyms.length > 0) {
+            if (meaning.synonyms && meaning.synonyms.length > 0) {
                 const synonyms = document.createElement("p")
-                synonyms.id = "synonyms"
-                synonyms.textContent = `Synonyms: ${def.synonyms.join(", ")}`
-                definition.append(synonyms)
-                // console.log(def.synonyms)
+                synonyms.id = "synonyms-list"
+                synonyms.innerHTML = `<b>Synonyms:</b> <light>${meaning.synonyms.join(", ")}</light>`
+                meaningBlock.append(synonyms)
             }
-            //else {
-            //     const synonyms = document.createElement("p")
-            //     synonyms.id = "no-synonym"
-            //     synonyms.textContent = "Synonyms: No available synonyms"
-            //     definition.append(synonyms)
-            // }
+            if (meaning.antonyms && meaning.antonyms.length > 0) {
+                const antonyms = document.createElement("p")
+                antonyms.id = "antonyms-list"
+                antonyms.innerHTML = `<strong>Antonyms:</strong> ${meaning.antonyms.join(", ")}`
+                meaningBlock.append(antonyms)
+            }
 
-            defList.append(definition)
+            displayContainer.append(meaningBlock);
 
         })
-        meaningBlock.append(defList)
-
-        if (meaning.synonyms && meaning.synonyms.length > 0) {
-            const synonyms = document.createElement("p")
-            synonyms.id = "synonyms-list"
-            synonyms.innerHTML = `<b>Synonyms:</b> <light>${meaning.synonyms.join(", ")}</light>`
-            meaningBlock.append(synonyms)
-        }
-        if (meaning.antonyms && meaning.antonyms.length > 0) {
-            const antonyms = document.createElement("p")
-            antonyms.id = "antonyms-list"
-            antonyms.innerHTML = `<strong>Antonyms:</strong> ${meaning.antonyms.join(", ")}`
-            meaningBlock.append(antonyms)
-        }
-
-        displayContainer.append(meaningBlock);
-
     })
-})
 }
 
 const form = document.querySelector("#form");
