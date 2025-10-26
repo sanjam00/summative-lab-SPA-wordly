@@ -1,57 +1,168 @@
 /* add header div element to html file for h1 and the p; add id for p element*/
 header {
-    background-color: #A9B6E0;
+    background-color: #374E9A;
     text-align: center;
     width: 100%;
     margin: 0;
-    padding: 0;
+    padding: 20px;
 }
 
 h1 {
     font-family: "Times New Roman", Times, serif;
     font-weight: bold;
-    color: #F5EBD0;
-    /* change font style*/
+    color: #EAD69E;
+    font-size: 3rem;
 }
 
 #description {
-    color: #F5EBD0;
+    color: #EAD69E;
+    font-size: 1.25em;
+    font-style: italic;
 }
 
 #form {
     background-color: #304485;
     width: 100%;
-    padding: 10px;
-    margin: 0;
+    padding: 15px;
+    margin-top: -1px;
+    /* Remove any sub-pixel gap */
     display: flex;
-    /* justify-content: center;
-    align-items: center; */
-    /*add padding/border; make it touch the bottom of the header color bar; alignment center*/
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
 }
 
-#user-input{
+#user-input {
     border-radius: 10px;
-    width: 100px; /*maybe use width and height intead?*/;
-    height: 50px;
+    flex: .75 1 100px;
+    min-width: 0;
+    height: 28px;
+    padding: 10px;
+    margin: 5px;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', sans-serif;
 }
 
-#enter{
+#enter {
     border-radius: 10px;
-    size: 25px; /*maybe use width and height intead?*/;
+    width: 50px;
+    height: 20px;
+    padding: 1px;
+    margin: 5px;
+    background-color: #EAD69E;
+    transition: .3s;
+    border: none;
+    font-family: 'Trebuchet MS', sans-serif;
 }
 
-body{
+#enter:hover {
+    background-color: #E2C678;
+    width: 52px;
+    height: 22px;
+    padding: 2px;
+    transform: translateY(-1px);
+    /* text-transform: font-style italic .3s; */
+}
+
+body {
     background-color: #E0E0E0;
+    margin: 0;
+    padding: 0;
 }
 
 #meaning-block {
-    border: .5px solid grey;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
     border-radius: 15px;
     background-color: #F7F7F7;
     padding: 25px;
-    margin: 50px;
-    /*add hover*/
+    margin: 5%;
 }
 
+display-results.button {
+    margin: .5rem;
+}
 
+h2 {
+    font-size: 2rem;
+    padding: 10px;
+    margin-left: 5%;
+
+}
+
+button#favoritesBtn {
+    margin: 0px 5% 15px 5%;
+    padding: 8px;
+    border-radius: 10px;
+    border: none;
+    background-color: #EAD69E;
+    transition: .3s;
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+#phonTextContainer {
+    display: inline;
+    display: block;
+    margin: .5rem;
+}
+
+.phoneticText {
+    margin: 5% 0% 5% 5%;
+}
+
+button.phoneticAudioBtn {
+    display: block;
+    display: inline;
+    margin: 8px 2px 15px 5%;
+    padding: 8px;
+    border-radius: 10px;
+    border: none;
+    background-color: #EAD69E;
+    transition: .3s;
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+button#favoritesBtn:hover,
+button.phoneticAudioBtn:hover {
+    background-color: #E2C678;
+    transform: translateY(-1px);
+}
+
+h3 {
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding-left: 5%;
+}
+
+li, p {
+    line-height: 1.75;
+    letter-spacing: .03em;
+    font-family: 'Trebuchet MS', sans-serif;
+    /* font-weight: lighter; */
+}
+
+ol li::marker{
+    font-weight: bold;
+}
+
+/* # Chunk 5: Mobile responsiveness */
+/* @media (max-width: 480px) {
+    #form {
+        flex-wrap: wrap;
+        padding: 12px;
+        gap: 10px;
+    }
+
+    #user-input {
+        flex: 1 1 100%;
+        width: 100%;
+        margin: 0.25rem 0;
+        height: 40px;
+    }
+
+    #enter {
+        width: 100%;
+        flex: 1 1 100%;
+        padding: 12px 16px;
+        margin: 0.25rem 0;
+    }
+} */

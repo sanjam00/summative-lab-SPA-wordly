@@ -33,34 +33,80 @@ function displayWord(data) {
 
     //favorites button
     const favoritesBtn = document.createElement("button")
+    favoritesBtn.id = "favoritesBtn"
     favoritesBtn.textContent = "Add to Favorites"
     favoritesBtn.addEventListener("click", () => {
         favorites.push[displayContainer]
         console.log(favorites)
+        //make the fetched word highlighted until toggled again. look at example from se03
     })
     displayContainer.append(favoritesBtn)
 
 
     data.forEach(entry => {
 
+        const phonTextContainer = document.createElement("div")
+        phonTextContainer.id = "phonTextContainer"
+
+        const phonAudioContainer = document.createElement("div")
+        phonAudioContainer.id = "phonAudioContainer"
+
+
         entry.phonetics.forEach(phon => {
+
             //display phonetic text
             if (phon.text) {
-                const phoneticText = document.createElement("p")
-                phoneticText.textContent = phon.text //.join(", ")
-                displayContainer.append(phoneticText)
+                const phoneticText = document.createElement("span")
+                phoneticText.classList.add("phoneticText")
+                phoneticText.innerHTML = phon.text
+                // displayContainer.append(phoneticText)
+                phonTextContainer.append(phoneticText)
             }
 
             //display a button for phonetic audio
             if (phon.audio) {
                 const phoneticAudioBtn = document.createElement("button")
+                phoneticAudioBtn.classList.add("phoneticAudioBtn")
                 phoneticAudioBtn.textContent = "play audio"
                 phoneticAudioBtn.addEventListener("click", () => {
                     new Audio(phon.audio).play()
                 })
-                displayContainer.append(phoneticAudioBtn)
+                // displayContainer.append(phoneticAudioBtn)
+                phonAudioContainer.append(phoneticAudioBtn)
             }
+
+
         })
+
+        displayContainer.append(phonTextContainer, phonAudioContainer)
+
+        // const phonTextContainer = document.createElement("div")
+        // phonTextContainer.id = "phonTextContainer"
+
+        // const phonAudioContainer = document.createElement("div")
+        // phonAudioContainer.id = "phonAudioContainer"
+
+        // //display phonetic text
+        // if (entry.phonetics.text) {
+        //     const phoneticText = document.createElement("span")
+        //     phoneticText.id = "phoneticText"
+        //     phoneticText.innerHTML = entry.phonetics.text
+        //     displayContainer.append(phoneticText)
+        //     phonTextContainer.append(phoneticText)
+        // }
+
+        // //display a button for phonetic audio
+        // if (entry.phonetics.audio) {
+        //     const phoneticAudioBtn = document.createElement("button")
+        //     phoneticAudioBtn.id = "phoneticAudioBtn"
+        //     phoneticAudioBtn.textContent = "play audio"
+        //     phoneticAudioBtn.addEventListener("click", () => {
+        //         new Audio(entry.phonetics.audio).play()
+        //     })
+        //     // displayContainer.append(phoneticAudioBtn)
+        //     phonAudioContainer.append(phoneticAudioBtn)
+        // }
+        // displayContainer.append(phonTextContainer, phonAudioContainer)
 
 
         entry.meanings.forEach((meaning, i) => { //data.word.forEach or data.forEach?
@@ -72,16 +118,18 @@ function displayWord(data) {
 
             //part of speech as a title element
             const partOfSpeach = document.createElement("h3")
-            partOfSpeach.textContent = `Part of Speech ${i + 1}: ${meaning.partOfSpeech}`
+            // partOfSpeach.textContent = `Part of Speech ${i + 1}: ${meaning.partOfSpeech}`
+            partOfSpeach.textContent = meaning.partOfSpeech
             meaningBlock.append(partOfSpeach);
 
             //definition list
-            const defList = document.createElement("ul")
+            const defList = document.createElement("ol")
             meaning.definitions.forEach((def, j) => {
 
                 //gets the definition and displays it. 
                 const definition = document.createElement("li")
-                definition.innerHTML = `<strong>Definition ${j + 1}:</strong> ${def.definition}`
+                // definition.innerHTML = `<strong>${j + 1}.</strong> ${def.definition}`
+                definition.innerHTML = def.definition
 
                 //handles display of examples
                 if (def.example) {
@@ -89,12 +137,13 @@ function displayWord(data) {
                     defExample.id = "example"
                     defExample.textContent = `Example: ${def.example}`
                     definition.append(defExample)
-                } else {
-                    const defExample = document.createElement("p")
-                    defExample.id = "no-example"
-                    defExample.textContent = "Example: No available example"
-                    definition.append(defExample)
-                }
+                } 
+                // else {
+                //     const defExample = document.createElement("p")
+                //     defExample.id = "no-example"
+                //     defExample.textContent = "Example: No available example"
+                //     definition.append(defExample)
+                // }
 
                 //handles display of synonyms
                 if (def.synonyms && def.synonyms.length > 0) {
@@ -103,12 +152,12 @@ function displayWord(data) {
                     synonyms.textContent = `Synonyms: ${def.synonyms.join(", ")}`
                     definition.append(synonyms)
                     // console.log(def.synonyms)
-                } //else {
+                } 
+                //else {
                 //     const synonyms = document.createElement("p")
                 //     synonyms.id = "no-synonym"
                 //     synonyms.textContent = "Synonyms: No available synonyms"
                 //     definition.append(synonyms)
-
                 // }
 
                 defList.append(definition)
@@ -119,7 +168,7 @@ function displayWord(data) {
             if (meaning.synonyms && meaning.synonyms.length > 0) {
                 const synonyms = document.createElement("p")
                 synonyms.id = "synonyms-list"
-                synonyms.innerHTML = `<strong>Synonyms:</strong> ${meaning.synonyms.join(", ")}`
+                synonyms.innerHTML = `<b>Synonyms:</b> <light>${meaning.synonyms.join(", ")}</light>`
                 meaningBlock.append(synonyms)
             }
             if (meaning.antonyms && meaning.antonyms.length > 0) {
