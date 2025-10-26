@@ -90,7 +90,6 @@ h2 {
 h2,
 button#favoritesBtn {
     display: inline-block;
-
 }
 
 button#favoritesBtn {
@@ -154,6 +153,11 @@ p {
 
 ol li::marker {
     font-weight: bold;
+}
+
+#error-message{
+    margin: 5%;
+    font-style: italic;
 }
 
 /* # Chunk 5: Mobile responsiveness */

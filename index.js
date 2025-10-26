@@ -11,6 +11,7 @@ function fetchDictionary(query) {
         })
         .catch(error => {
             errorMessage = document.createElement("p")
+            errorMessage.id = "error-message"
             errorMessage.textContent = `Failed to load request. Please check spelling or try again later.`;
 
             displayContainer.append(errorMessage)
@@ -39,7 +40,6 @@ function displayWord(data) {
         wordHeader.classList.toggle('favorited')
         favorites.push[displayContainer]
         console.log(favorites)
-        //make the fetched word highlighted until toggled again. look at example from se03
     })
     displayContainer.append(favoritesBtn)
 
@@ -76,7 +76,7 @@ data.forEach(entry => {
 
     displayContainer.append(phonTextContainer, phonAudioContainer)
 
-    entry.meanings.forEach((meaning, i) => { //data.word.forEach or data.forEach?
+    entry.meanings.forEach((meaning) => { //data.word.forEach or data.forEach?
         //gets all phonetics, displays them all at once, not with each version of the word
 
         //container for each definition card
@@ -85,17 +85,15 @@ data.forEach(entry => {
 
         //part of speech as a title element
         const partOfSpeach = document.createElement("h3")
-        // partOfSpeach.textContent = `Part of Speech ${i + 1}: ${meaning.partOfSpeech}`
         partOfSpeach.textContent = meaning.partOfSpeech
         meaningBlock.append(partOfSpeach);
 
         //definition list
         const defList = document.createElement("ol")
-        meaning.definitions.forEach((def, j) => {
+        meaning.definitions.forEach((def) => {
 
             //gets the definition and displays it. 
             const definition = document.createElement("li")
-            // definition.innerHTML = `<strong>${j + 1}.</strong> ${def.definition}`
             definition.innerHTML = def.definition
 
             //handles display of examples
